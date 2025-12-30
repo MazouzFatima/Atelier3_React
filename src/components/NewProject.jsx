@@ -1,31 +1,29 @@
 import { useRef } from "react";
 import Modal from "./Modal";
+import Input from "./Input";
+import Button from "./Button";
 
-function NewProject() {
+function NewProject({ onAddProject, onCancel }) {
   const title = useRef();
   const description = useRef();
   const date = useRef();
   const modal = useRef();
 
-  console.log(date, description, title);
-
   function handleSave() {
-    const formTitle = title.current.value;
-    const formDescription = description.current.value;
-    const formDate = date.current.value;
-
     if (
-      formTitle.trim() === "" ||
-      formDescription.trim() === "" ||
-      formDate.trim() === ""
+      title.current.value.trim() === "" ||
+      description.current.value.trim() === "" ||
+      date.current.value.trim() === ""
     ) {
-      // show the modal
       modal.current.open();
       return;
     }
 
-    // the parent function that sends for data.
-    console.log("add the form data", formTitle, formDate, formDescription);
+    onAddProject({
+      name: title.current.value,
+      description: description.current.value,
+      dueDate: date.current.value,
+    });
   }
 
   return (
@@ -34,49 +32,22 @@ function NewProject() {
         <h2 className="text-xl font-bold text-stone-700">Invalid Input</h2>
         <p>Looks like you forgot to fill out a field.</p>
       </Modal>
-      <div className="flex justify-end space-x-4">
-        <button button="button">Cancle</button>
-        <button
-          onClick={() => handleSave()}
-          button="button"
-          className="bg-stone-700 text-white p-2 rounded-md"
+
+      <div className="flex justify-end gap-4 mb-6">
+        <Button
+          className="bg-transparent text-stone-600 hover:bg-stone-200"
+          onClick={onCancel}
         >
-          save
-        </button>
+          Cancel
+        </Button>
+
+        <Button onClick={handleSave}>Save</Button>
       </div>
+
       <form className="flex flex-col space-y-4">
-        <label htmlFor="title" className="flex font-sans font-bold flex-col">
-          Title
-          <input
-            type="text"
-            ref={title}
-            id="title"
-            className="p-3 bg-gray-300 font-normal outline-none border-b-black border"
-          />
-        </label>
-
-        <label
-          className="flex font-sans font-bold flex-col"
-          htmlFor="description"
-        >
-          Description
-          <input
-            type="text"
-            className="p-3 bg-gray-300 font-normal outline-none border-b-black border"
-            ref={description}
-            id="description"
-          />
-        </label>
-
-        <label className="flex font-sans font-bold flex-col" htmlFor="date">
-          Date
-          <input
-            type="date"
-            ref={date}
-            id="date"
-            className="p-3 bg-gray-300 font-normal outline-none border-b-black border"
-          />
-        </label>
+        <Input ref={title} label="Title" />
+        <Input ref={description} label="Description" />
+        <Input ref={date} type="date" label="Date" />
       </form>
     </div>
   );
