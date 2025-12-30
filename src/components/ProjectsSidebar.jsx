@@ -1,22 +1,25 @@
-import React from 'react'
-import { useState } from 'react';
+import React from "react";
 
-function ProjectsSidebar() {
-    const [Projects, setProjects] = useState([])
-    const handleClick = () => {
-        setProjects([...Projects, 'New Project'])
-    }
+function ProjectsSidebar({ projects = [] }) {
   return (
     <div className="bg-stone-900 w-64 h-screen p-4 rounded-tr-2xl mt-8">
       <h1 className="text-white font-bold m-4 text-lg">Your Projects</h1>
-      <button
-        className="text-white/50 bg-stone-700 h-8 w-full rounded pt-5 pb-5 flex items-center justify-center "
-        onClick={handleClick}
-      >
+      <button className="text-white/50 bg-stone-700 w-full rounded py-2 flex items-center justify-center mb-6">
         + Add Project
       </button>
+      <ul className="text-white/50">
+        {projects && projects.length > 0 ? (
+          projects.map((project, index) => (
+            <li key={index} className="m-2">
+              {project?.name || project}
+            </li>
+          ))
+        ) : (
+          <li>No projects available</li>
+        )}
+      </ul>
     </div>
   );
 }
 
-export default ProjectsSidebar
+export default ProjectsSidebar;
