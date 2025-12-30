@@ -1,31 +1,37 @@
 import { useState } from "react";
-import Button from "./Button";
 
-function NewTask({ onAdd, projectId }) {
+export default function NewTask({ onAdd }) {
   const [enteredTask, setEnteredTask] = useState("");
 
-  function handleAddTask() {
-    if (enteredTask.trim() === "") return;
+  function handleChange(event) {
+    setEnteredTask(event.target.value);
+  }
 
-    onAdd(enteredTask, projectId);
+  function handleAddTask() {
+    if (enteredTask.trim() === "") {
+      return;
+    }
+
+    onAdd(enteredTask);
     setEnteredTask("");
   }
 
   return (
-    <div className="flex items-center gap-4 mt-4">
+    <div className="flex items-center gap-4">
       <input
         type="text"
         value={enteredTask}
-        onChange={(e) => setEnteredTask(e.target.value)}
-        className="flex-1 p-2 bg-gray-300 rounded-md outline-none"
+        onChange={handleChange}
+        className="w-full rounded-sm border border-stone-300 bg-stone-200 px-2 py-1"
         placeholder="New task..."
       />
-
-      <Button onClick={handleAddTask}>
+      <button
+        onClick={handleAddTask}
+        className="text-stone-700 hover:text-stone-950"
+      >
         Add Task
-      </Button>
+      </button>
     </div>
   );
 }
 
-export default NewTask;
