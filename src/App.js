@@ -1,10 +1,12 @@
-import './App.css';
-import ProjectsSidebar from './components/ProjectsSidebar';
+import "./App.css";
+import NewProject from "./components/NewProject";
+import ProjectsSidebar from "./components/ProjectsSidebar";
 
 function App() {
   return (
     <div className="App flex flex-row">
-     <ProjectsSidebar/>
+      <ProjectsSidebar />
+      <NewProject />
     </div>
   );
 }
