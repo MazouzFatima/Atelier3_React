@@ -7,7 +7,7 @@ function ProjectsSidebar({ projects = [] }) {
       <button className="text-white/50 bg-stone-700 w-full rounded py-2 flex items-center justify-center mb-6">
         + Add Project
       </button>
-      <ul className="text-white/50">
+      <ul className="text-white">
         {projects && projects.length > 0 ? (
           projects.map((project, index) => (
             <li key={index} className="m-2">
