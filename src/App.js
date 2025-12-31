@@ -9,7 +9,7 @@ function App() {
   const [projectsState, setProjectsState] = useState({
     selectedProjectId: undefined, // undefined = accueil, null = formulaire, ID = projet choisi
     projects: [],
-    tasks: []
+    tasks: [],
   });
 
   // Gérer l'ajout d'une tâche (State Lifting - Page 8)
@@ -40,11 +40,17 @@ function App() {
   }
 
   function handleStartAddProject() {
-    setProjectsState((prevState) => ({ ...prevState, selectedProjectId: null }));
+    setProjectsState((prevState) => ({
+      ...prevState,
+      selectedProjectId: null,
+    }));
   }
 
   function handleCancelAddProject() {
-    setProjectsState((prevState) => ({ ...prevState, selectedProjectId: undefined }));
+    setProjectsState((prevState) => ({
+      ...prevState,
+      selectedProjectId: undefined,
+    }));
   }
 
   function handleAddProject(projectData) {
@@ -62,7 +68,9 @@ function App() {
     setProjectsState((prevState) => ({
       ...prevState,
       selectedProjectId: undefined,
-      projects: prevState.projects.filter((p) => p.id !== prevState.selectedProjectId),
+      projects: prevState.projects.filter(
+        (p) => p.id !== prevState.selectedProjectId
+      ),
     }));
   }
 
@@ -87,7 +95,12 @@ function App() {
   );
 
   if (projectsState.selectedProjectId === null) {
-    content = <NewProject onAddProject={handleAddProject} onCancel={handleCancelAddProject} />;
+    content = (
+      <NewProject
+        onAddProject={handleAddProject}
+        onCancel={handleCancelAddProject}
+      />
+    );
   } else if (projectsState.selectedProjectId === undefined) {
     content = <NoProjectSelected onStartAddProject={handleStartAddProject} />;
   }

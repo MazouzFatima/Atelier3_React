@@ -34,4 +34,3 @@ export default function NewTask({ onAdd }) {
     </div>
   );
 }
-

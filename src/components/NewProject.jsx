@@ -30,12 +30,12 @@ function NewProject({ onAddProject, onCancel }) {
     <div className="flex w-full min-h-screen flex-col p-10">
       <Modal ref={modal}>
         <h2 className="text-xl font-bold text-stone-700">Invalid Input</h2>
-        <p>Looks like you forgot to fill out a field.</p>
+        <p>Looks like you forgot to fill out a field. </p>
       </Modal>
 
       <div className="flex justify-end gap-4 mb-6">
         <Button
-          className="bg-transparent text-stone-600 hover:bg-stone-200"
+          className="bg-transparent text-stone-600 hover:bg-stone-200 hover:text-white"
           onClick={onCancel}
         >
           Cancel
