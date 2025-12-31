@@ -13,20 +13,19 @@ function ProjectsSidebar({ projects = [], onSelectProject, onStartAddProject }) 
         + Add Project
       </button>
 
-      <ul className="text-white/50">
-        {projects && projects.length > 0 ? (
+      <ul className="text-white/75">
+        {projects.length > 0 ? (
           projects.map((project, index) => (
             <li
               key={index}
-              className="m-2 cursor-pointer"
-              
+              className="m-2 cursor-pointer bg-stone-800 w-full rounded py-2 rounded pl-2 items-center justify-center mr-4 ml-0 hover:bg-stone-700"
               onClick={() => onSelectProject(project.id)}
             >
               {project?.name || project}
             </li>
           ))
         ) : (
-          <li>No projects available</li>
+          <li className="text-white/50">No projects available</li>
         )}
       </ul>
     </div>
