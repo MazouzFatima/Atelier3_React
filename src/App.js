@@ -5,19 +5,19 @@ import SelectedProject from "./components/SelectedProject";
 import NoProjectSelected from "./components/NoProjectSelected";
 
 function App() {
-  // État global unique (Spécification page 3)
+
   const [projectsState, setProjectsState] = useState({
-    selectedProjectId: undefined, // undefined = accueil, null = formulaire, ID = projet choisi
+    selectedProjectId: undefined, 
     projects: [],
     tasks: [],
   });
 
-  // Gérer l'ajout d'une tâche (State Lifting - Page 8)
+
   function handleAddTask(text) {
     setProjectsState((prevState) => {
       const newTask = {
         text: text,
-        projectId: prevState.selectedProjectId, // On lie la tâche au projet sélectionné
+        projectId: prevState.selectedProjectId, 
         id: Math.random().toString(),
       };
 
@@ -74,12 +74,11 @@ function App() {
     }));
   }
 
-  // --- Logique d'affichage (Rendu conditionnel - Page 2) ---
+
   const selectedProject = projectsState.projects.find(
     (p) => p.id === projectsState.selectedProjectId
   );
 
-  // Filtrage des tâches pour le projet sélectionné
   const selectedProjectTasks = projectsState.tasks.filter(
     (t) => t.projectId === projectsState.selectedProjectId
   );
